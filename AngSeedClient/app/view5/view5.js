@@ -1,17 +1,17 @@
 'use strict';
 
-angular.module('myApp.view4', ['ngRoute'])
+angular.module('myApp.view5', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view4', {
-    templateUrl: 'view4/view4.html',
-    controller: 'View4Ctrl'
+  $routeProvider.when('/view5', {
+    templateUrl: 'view5/view5.html',
+    controller: 'View5Ctrl'
   });
 }])
 
 
-.controller('View4Ctrl', function($http,$scope) {
-  $http.get('api/demouser')
+.controller('View5Ctrl', function($http,$scope) {
+  $http.get('api/demoadmin')
             .success(function (data, status, headers, config) {
               $scope.data = data;
             })
