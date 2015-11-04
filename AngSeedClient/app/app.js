@@ -23,9 +23,39 @@ angular.module('myApp', [
         config(function ($httpProvider) {
             $httpProvider.interceptors.push('authInterceptor');
         }).
-                
 // BOOTSTRAP MODAL START
-        controller('ModalDemoCtrl', function ($scope, $uibModal, $log) {
+        controller('ModalDemoCtrl', function ($scope, $uibModal, $log, $http) {
+            
+            $scope.addUserAsJSON = function(){		
+		// Writing it to the server
+		//		
+		var dataObj = {
+				userName : $scope.userName,
+				password : $scope.password
+		};
+                
+                
+                
+		var res = $http.post('http://localhost:8080/AngSeedServer/api/newuser/adduser', dataObj);
+		res.success(function(data, status, headers, config) {
+			//$scope.message = data;
+                        alert("User successfully created");
+		});
+		res.error(function(data, status, headers, config) {
+			alert( "failure message: " + JSON.stringify({data: data}));
+		});		
+		// Making the fields empty
+		//
+		$scope.userName='';
+		$scope.password='';
+                
+                
+                console.log(dataObj);
+	};
+            
+            
+            
+            
 
             $scope.items = ['item1', 'item2', 'item3'];
 
@@ -75,27 +105,58 @@ angular.module('myApp', [
             $scope.cancel = function () {
                 $uibModalInstance.dismiss('cancel');
             };
-        })
+        });
 
 // BOOTSTRAP MODAL END
 
 // SIGNUP
-.controller("signupHttp", ["$http", "$scope", function ($http, $scope) {
-
-        // Simple GET request example:
-        $http({
-            method: 'GET',
-            url: 'http://localhost:8383/AngSeedClient/api/users/adduser'
-        }).then(function successCallback(response) {
-
-            var list = [];
-            $scope.list = response.data;
-            
-            $scope.msg = ""; // return a message from API (ex: user exist)
-            
-        }, function errorCallback(response) {
-
-            $scope.error = response.status + ": " + response.statusText;
-        });
-
-    }]);
+//        .controller("signupHttp", ["$http", "$scope", function ($http, $scope) {
+//
+//                var newUser = JSON.stringify({username: sUsername, password: sPassword});
+//        
+//                var url = 'http://localhost:8383/AngSeedClient/api/demouser/adduser';
+//                
+//                $http.post(url, {headers: {'Content-Type': 'application/json'}})
+//
+//                .success(function (data, status, headers, config) {
+//
+//                    console.log(data);
+//
+//                })
+//                .error(function () {
+//
+//                    // ERROR!
+//
+//                });
+//
+//            }])
+        
+        
+        
+        
+//        .controller("signupCtrl", ['$scope', '$http', function($scope, $http) {
+//	
+//	$scope.addUserAsJSON = function(){		
+//		$scope.companies.push({ 'userName':$scope.userName, 'password': $scope.password });
+//		// Writing it to the server
+//		//		
+//		var dataObj = {
+//				userName : $scope.userName,
+//				password : $scope.password
+//		};
+//                
+//                console.log(dataObj);
+//                
+//		var res = $http.post('http://localhost:8080/AngSeedClient/api/newuser/adduser', dataObj);
+//		res.success(function(data, status, headers, config) {
+//			$scope.message = data;
+//		});
+//		res.error(function(data, status, headers, config) {
+//			alert( "failure message: " + JSON.stringify({data: data}));
+//		});		
+//		// Making the fields empty
+//		//
+//		$scope.userName='';
+//		$scope.password='';
+//	};
+//}]);
