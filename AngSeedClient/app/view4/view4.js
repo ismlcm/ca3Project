@@ -14,6 +14,9 @@ angular.module('myApp.view4', ['ngRoute'])
   $http.get('api/demouser')
             .success(function (data, status, headers, config) {
               $scope.data = data;
+      
+              $scope.msg = "Du er nu logget ind som USER";
+      
             })
             .error(function (data, status, headers, config) {
               

@@ -14,6 +14,9 @@ angular.module('myApp.view5', ['ngRoute'])
   $http.get('api/demoadmin')
             .success(function (data, status, headers, config) {
               $scope.data = data;
+      
+              $scope.msg = "Du er nu logget ind som ADMIN";
+              
             })
             .error(function (data, status, headers, config) {
               
