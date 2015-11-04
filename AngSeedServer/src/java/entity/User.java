@@ -1,13 +1,26 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class User {
-  
+@Entity
+public class User implements Serializable {
+ 
+//  @GeneratedValue(strategy = GenerationType.IDENTITY)
+//  private Long id;
   private String password;  //Pleeeeease dont store me in plain text
+  @Id
   private String userName;
   List<String> roles = new ArrayList();
+
+    public User()
+    {
+    }
 
   public User(String userName, String password) {
     this.userName = userName;
