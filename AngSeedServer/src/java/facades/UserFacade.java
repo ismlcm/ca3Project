@@ -65,24 +65,34 @@ public class UserFacade
 
     public List<String> authenticateUser( String userName, String password )
     {
-        User user = getUser( userName ); //users.get( userName );
+        User user = getUser2( userName ); //users.get( userName );
         return user != null && user.getPassword().equals( password ) ? user.getRoles() : null;
     }
 
-    public void addUser( User user )
+    public boolean addUser( User user )
     {
+        boolean con = false;
         EntityManager em = getEntityManager();
+        
         try
         {
+            if(!em.contains(user)){
             em.getTransaction().begin();
-            em.persist( user );
+            em.persist(user);
             em.getTransaction().commit();
-            //users.put( user.getUserName(), user );
+            }  
+           
+            if (em.contains(user)) {
+                con = true;
+            }else{
+                System.out.println(" Dont  Exists ");
+            }
         }
         finally
         {
             em.close();
         }
+        return con;
     }
 
     public User getUser2(String username)
@@ -104,26 +114,6 @@ public class UserFacade
         return user;
     }
     
-    public User getUser( String username )
-    {
-        EntityManager em = getEntityManager();
-
-        User user = null;
-        Query query = null;
-        
-        try
-        {
-            query = em.createQuery( "SELECT u from USER u where u.username LIKE :username" ).setParameter( "username", username).setMaxResults( 1 ); //em.find( User.class, username );
-            
-            user = (User) query.getSingleResult();
-        }
-        catch (Exception e)
-        {
-            em.close();
-        }
-
-        return user;
-    }
     
     public int getAll()
     {
