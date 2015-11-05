@@ -1,4 +1,15 @@
 <div class="page-header">
     <h1>Company Info <small>View 3</small></h1>
-    <p>{{msg}}</p>
+    <!--    <p>{{msg}}</p>-->
+
+    <h1>{{size}}</h1>
+
+    <ul>
+        <li>{{companies.name}}</li>
+        <ul ng-repeat="c in companies.productionunits">
+            <li>{{c.name}}</li>
+        </ul>
+    </ul>
+
+
 </div>

@@ -72,6 +72,7 @@ angular.module('myApp', [
                         items: function () {
                             return $scope.items;
                         }
+                        
                     }
                 });
 
