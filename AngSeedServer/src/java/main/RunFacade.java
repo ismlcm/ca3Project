@@ -27,7 +27,7 @@ public class RunFacade
 //        u.AddRole( "User" );
 //        uu.addUser( u );
 
-        System.out.println( uu.getUser2( "maz" ).getRoles().get( 0 ) );
+        //System.out.println( uu.getUser2( "maz" ).getRoles().get( 0 ) );
 
         //System.out.println( u.getAll() );
 //        UserFacade uf = new UserFacade(Persistence.createEntityManagerFactory("PU"));

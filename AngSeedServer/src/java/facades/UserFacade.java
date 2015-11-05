@@ -15,14 +15,6 @@ public class UserFacade
 
     private final Map<String, User> users = new HashMap<>();
     private EntityManagerFactory emf;
-    
-    public static void main( String[] args )
-    {
-        UserFacade u = new UserFacade();
-        
-        System.out.println( u.getAll() );
-        
-    }
 
     public UserFacade()
     {
@@ -41,13 +33,13 @@ public class UserFacade
 //        both.AddRole( "Admin" );
 //        users.put( both.getUserName(), both );
 
-        String username = "admin";
-        String password = "admin";
-
-        User u = new User( username, password );
-        u.AddRole( "User" );
-        users.put( username, u );
-        //addUser( u );
+//        String username = "iso";
+//        String password = "iso";
+////
+//        User u = new User( username, password );
+//        u.AddRole( "User" );
+//        users.put( username, u );
+//        addUser( u );
     }
 
     public EntityManager getEntityManager()
@@ -65,7 +57,7 @@ public class UserFacade
 
     public List<String> authenticateUser( String userName, String password )
     {
-        User user = users.get( userName ); //getUser2( userName ); //users.get( userName );
+        User user = getUser2( userName ); //users.get( userName );
         return user != null && user.getPassword().equals( password ) ? user.getRoles() : null;
     }
 
