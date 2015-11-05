@@ -33,10 +33,10 @@ angular.module('myApp.view3', ['ngRoute'])
 
             $scope.size = response.data.length;
 
-            var companies = [{}];
-            $scope.companies = response.data;
+            var company = [{}];
+            $scope.company = response.data;
         
-           console.log(response.data);
+           console.log(company);
            
 
         }, function errorCallback(response) {

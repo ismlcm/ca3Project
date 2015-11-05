@@ -2,14 +2,23 @@
     <h1>Company Info <small>View 3</small></h1>
     <!--    <p>{{msg}}</p>-->
 
-    <h1>{{size}}</h1>
+    <h3>{{company.name}}</h3>
+    
+    <p><strong>VAT: </strong>{{company.vat}}</p>
+    
+    <p><strong>Address</strong><br/>{{company.address}}<br/>{{company.zipcode}} {{company.city}}</p>
+    
+    <p><strong>Email: </strong>{{company.email}}</p>
+    <p><strong>Phone: </strong>{{company.phone}}</p>
+    
+    <p><strong>Company Type: </strong>{{company.companydesc}}</p>
+    <p><strong>Company Branche: </strong>{{company.industrydesc}}</p>
+    
+    <br/>
+    
+    <h4>Departments</h4>
 
-    <ul>
-        <li>{{companies.name}}</li>
-        <ul ng-repeat="c in companies.productionunits">
+        <ul ng-repeat="c in company.productionunits">
             <li>{{c.name}}</li>
         </ul>
-    </ul>
-
-
 </div>
