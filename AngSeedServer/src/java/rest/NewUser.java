@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import entity.User;
 import facades.UserFacade;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
@@ -33,8 +34,6 @@ public class NewUser
 
     Gson gson;
     UserFacade uf = new UserFacade();
-
-    User user1 = new User();
 
     @Context
     private UriInfo context;
@@ -79,9 +78,12 @@ public class NewUser
     @Path( "adduser" )
     public String createUser( String user )
     {
+        User user1 = new User();
+        
         boolean e;
         JsonObject o = new JsonObject();
         user1 = gson.fromJson( user, User.class );
+        user1.AddRole( "User" );
         e = uf.addUser( user1 );
         if ( e )
         {

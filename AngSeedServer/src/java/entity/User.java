@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ public class User implements Serializable {
   private String password;  //Pleeeeease dont store me in plain text
   @Id
   private String userName;
+  @ElementCollection
   List<String> roles = new ArrayList();
 
     public User()
