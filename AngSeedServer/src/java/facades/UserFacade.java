@@ -107,7 +107,7 @@ public class UserFacade
     }
     
     
-    public int getAll()
+    public int getAllSize()
     {
         int i = 0;
         
@@ -130,6 +130,39 @@ public class UserFacade
         }
         
         return i;
+    }
+    
+    public List<User> getAllUsers(){
+        List<User> users = new ArrayList();
+        EntityManager em = getEntityManager();
+        Query query = null;
+        
+        query = em.createQuery("SELECT u from USER u");
+        users = query.getResultList();
+        
+        return users;
+    }
+    
+    public void deleteUser(String username) {
+        EntityManager em = getEntityManager();
+        User u = null;
+        
+        try {
+            u = em.find(User.class, username);
+        } catch (Error e) {
+            // Does nothing.
+        }
+        
+        try {
+            if (u != null) {
+                em.getTransaction().begin();
+                em.remove(u);
+                em.getTransaction().commit();
+                em.close();
+            }
+        } catch (Error e) {
+            // Does nothing.
+        }
     }
 
 }

@@ -78,7 +78,7 @@ public class NewUser
     @Path( "adduser" )
     public String createUser( String user )
     {
-        User user1 = new User();
+        User user1 = new User(null, null);
         
         boolean e;
         JsonObject o = new JsonObject();

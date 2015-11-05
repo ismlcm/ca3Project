@@ -20,10 +20,9 @@ public class User implements Serializable {
   @ElementCollection
   List<String> roles = new ArrayList();
 
-    public User()
-    {
+    public User() {
     }
-
+  
   public User(String userName, String password) {
     this.userName = userName;
     this.password = password;
